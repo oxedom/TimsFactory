@@ -1,0 +1,59 @@
+let logoutBtn = document.getElementById("logout")
+let fullnameNav = document.getElementById("fullnamenav")
+let numOfActionsNav = document.getElementById("numOfActionsnav")
+// window.localStorage.setItem("id", "null")
+// window.localStorage.setItem('fullname', "offline")
+// window.localStorage.setItem('user', "offline")
+// window.localStorage.setItem('numOfActions', 1)
+
+let isLoggedin = async () => 
+{
+// let VertifyObj = { "ID": "9" ,"Full_name": "OFFLINE", "username": "OFFLINE", "numOfActions": 0}
+let VertifyObj = {} 
+VertifyObj.ID = localStorage.getItem("id")
+VertifyObj.Full_name = localStorage.getItem("fullname")
+VertifyObj.username  = localStorage.getItem('user')
+VertifyObj.numOfActions = localStorage.getItem('numOfActions')
+
+//SENDS POST REQUEST TO USERBASETABLE AND RETURNS A CUSTOM USEROBJECT
+        //WITH THE PASSWORD
+        const rawResponse = await fetch('https://localhost:44367/api/Vertify', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ID: VertifyObj.ID, Full_name: VertifyObj.Full_name, username: VertifyObj.username, numOfActions: VertifyObj.numOfActions })
+        });
+        const response = await rawResponse.json();
+        console.log(response)
+        if(response == false) { location.href = 'http://127.0.0.1:5500/login.html' 
+        alert("OI LOG IN")}
+        if(response) { console.log("LOGGED IN ALL NICE")}
+}
+
+
+
+window.addEventListener('load', (event) => {
+    isLoggedin();
+    console.log('page is fully loaded');
+    fullnameNav.innerText = localStorage.getItem("fullname")
+    numOfActionsNav.innerText =  localStorage.getItem('numOfActions')
+   
+  });
+
+let logOut = () => 
+  {
+      window.localStorage.setItem("id", null)
+      window.localStorage.setItem('fullname', null)
+      window.localStorage.setItem('user', null)
+      window.localStorage.setItem('numOfActions', null)
+      location.href = 'http://127.0.0.1:5500/login.html' 
+  }
+
+logoutBtn.addEventListener("click", e => 
+{
+// e.stopPropagation()
+logOut()
+
+})
