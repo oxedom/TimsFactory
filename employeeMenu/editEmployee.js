@@ -1,12 +1,44 @@
-let select = document.getElementById("deps");
+let selectDeps = document.getElementById("deps");
+let selectYear = document.getElementById("StartOfWorkingYear")
 let fname = document.getElementById("fname")
 let lname = document.getElementById("lname")
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('empid');
 
-let form = document.getElementById("form")
-console.log(form)
 
+
+
+
+let form = document.getElementById("form")
+form.addEventListener("submit", (e) => 
+{
+e.preventDefault()
+let empObj = 
+{
+fname: fname.value,
+lname: lname.value,
+startYear: `${selectYear.value}-01-01`,
+DepartmentID: selectDeps.value
+}   
+
+console.log(empObj)
+    
+    
+    const putMethod = {
+        method: 'PUT', // Method itself
+        headers: {
+         'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+        },
+        body: JSON.stringify(empObj) // We send data in JSON format
+       }
+
+       console.log(putMethod)
+fetch(`https://localhost:44367/api/Employee/${myParam}`, putMethod)
+
+
+e.preventDefault()
+
+})
 
 
 
@@ -30,7 +62,7 @@ for (let index = 0; index < data.length; index++)
     let option = document.createElement("option");
 option.text = data[index].name;
 option.value = data[index].ID;
-select.appendChild(option);
+selectDeps.appendChild(option);
     
 }
 })
@@ -43,7 +75,7 @@ fetch(`https://localhost:44367/api/Employee/${myParam}`)
     {
         fname.value = data.fname
         lname.value = data.lname
-        select.value = data.DepartmentID
+        selectDeps.value = data.DepartmentID
     })
 
 
