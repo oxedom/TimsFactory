@@ -27,8 +27,8 @@ VertifyObj.numOfActions = localStorage.getItem('numOfActions')
         });
         const response = await rawResponse.json();
         console.log(response)
-        if(response == false) { location.href = 'http://127.0.0.1:5500/login.html' 
-        alert("OI LOG IN")}
+        if(response == false) { window.location.replace('http://127.0.0.1:5500/login.html') 
+        }
         if(response) { console.log("LOGGED IN ALL NICE")}
 }
 

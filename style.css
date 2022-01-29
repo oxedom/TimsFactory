@@ -15,6 +15,10 @@ table, th, td {
         border: 1px solid black;
    
         }
+
+
+
+
 .bodyClass 
 {
     /* background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
@@ -49,3 +53,11 @@ justify-content: center;
 display: flex;
 
 }
+
+.hide 
+{
+display: none;
+
+}
+
+.hide2 {display: none;}
