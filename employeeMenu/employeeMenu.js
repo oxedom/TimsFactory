@@ -117,8 +117,10 @@ empData.forEach( emp => {
 }
 
 
+setTimeout(() => {
+    displayEmployeeData()
+}, 100);
 
-displayEmployeeData()
 
 
 
@@ -135,7 +137,8 @@ trs.forEach(tr => { tr.classList.remove("hide")})
 tds.forEach(td => 
         {   
             if(td.innerText.toLowerCase().startsWith(term) && term.length > 0) 
-            {             
+            {    
+               
                 td.parentElement.classList.add("hide")
             }
             })  
