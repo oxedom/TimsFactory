@@ -29,7 +29,7 @@ empData.forEach( emp => {
 
     //Adds the Fullname to a link with a href to the ID for the edit Employeepage 
     let NameData = document.createElement('td')
-    NameData.innerHTML = `<a href="http://127.0.0.1:5500/employeeMenu/edit_Employee.html/${emp.ID}"> ${emp.fname} ${emp.lname} </a>`
+    NameData.innerHTML = `<a href="http://127.0.0.1:5500/employeeMenu/edit_Employee.html?${emp.ID}"> ${emp.fname} ${emp.lname} </a>`
     
     //Adds Start Of Working Year (Converted with DateOBJ)
     let StartOfWorkingData = document.createElement('td')
