@@ -122,10 +122,6 @@ setTimeout(() => {
 }, 100);
 
 
-
-
-
-
 search.addEventListener('keyup', () => {
 
 let tds = document.querySelectorAll('td')

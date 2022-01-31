@@ -6,9 +6,6 @@ const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('empid');
 
 
-
-
-
 let form = document.getElementById("form")
 form.addEventListener("submit", (e) => 
 {
