@@ -69,13 +69,13 @@ empData.forEach( emp => {
     editButton.addEventListener("click", e => {window.location.replace(`http://127.0.0.1:5500/employeeMenu/edit_Employee.html?empid=${emp.ID}`)}) 
     addButton.addEventListener("click", e => {window.location.replace(`www.google.com`)})        
     deleteButton.addEventListener("click", e =>  {
-    //      fetch(`https://localhost:44367/api/Employee/${emp.ID}`,{
-    //     method: 'delete'})
+         fetch(`https://localhost:44367/api/Employee/${emp.ID}`,{
+        method: 'delete'})
     
     
     
     
-    // .then(Response => console.log(Response.json()))
+    .then(Response => console.log(Response.json()))
 
 (e.path[2].classList.add('hide2'))
 })   
