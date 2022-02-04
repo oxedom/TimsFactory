@@ -4,6 +4,8 @@ const mangerDropbox = document.getElementById('manger')
 const depDropbox = document.getElementById('department')
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('depid');
+console.log(myParam)
+
 
 fetch('https://localhost:44367/api/Employee')
 .then(Response => Response.json())
@@ -35,16 +37,20 @@ let getDeps = () =>
     option.value = data[index].ID;
     depDropbox.value = data.ID
     depDropbox.appendChild(option);
+   
 
-    
 
     }
+    
+    document.getElementById('department').childNodes.forEach(op => {
+        console.log(op)
+        if(op.value == myParam) { op.setAttribute('selected', 0)}
+    });
+
     })
+
     
  }
-
-
-
 
 
 form.addEventListener("submit", (e) => 
@@ -76,8 +82,6 @@ else { alert("NEW NAME NEEDS TO BE AT LEAST 3 CHARS LONG")}
 
 
 })
-
-
 
 
 
