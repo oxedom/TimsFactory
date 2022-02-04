@@ -17,7 +17,7 @@ option.text = data[index].fname +" "+ data[index].lname;
 option.value = data[index].ID;
 mangerDropbox.value = data.ID
 mangerDropbox.appendChild(option);
-    
+ 
 }
 getDeps()
 })
@@ -36,7 +36,9 @@ let getDeps = () =>
     option.value = data[index].ID;
     depDropbox.value = data.ID
     depDropbox.appendChild(option);
-        
+
+    
+
     }
     })
     
@@ -68,6 +70,7 @@ if(nameInput.value.length > 3)
     setTimeout(() => {
         location.reload();
     }, 500);
+    alert("EDITED")
 }
 else { alert("NEW NAME NEEDS TO BE AT LEAST 3 CHARS LONG")}
 
