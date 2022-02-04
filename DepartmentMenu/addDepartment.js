@@ -36,7 +36,7 @@ console.log(depObj)
 
 
 fetch(`https://localhost:44367/api/Department/`, postMethod)
-
+alert("ADDED")
 
 location.reload();
 
