@@ -12,18 +12,15 @@
 		<span>NumOfActions </span> <span id="numOfActionsnav"></span> 
 		<input id="logout" type="button" value="logout">
 		</div>
-		<h1> Edit</h1>
-        <div>
-			<form id="form" action="">
-                <span>Old Department Name</span>  <select name="department" id="department">  </select> 
-				<span>New Department Name</span> <input type="text" id="name">
-				<span>Manger</span>  <select name="Manger" id="manger">  </select> 
-				<input type="submit" value="Update">
-			</form>
-		</div>
-
+		<h1> Add Shift </h1>
+        <form action="submit" id='form'>
+        <span>emp</span>  <select name="emp" id="emp">  </select> 
+        <input type="date" id='date'>
+        <span>Starting hour</span> <input type="number" name="" min="1" max="24" id="start"> 
+        <span>Ending hour <input type="number" name="" min="1" max="24" id="end">
+        <button id="btn" type="submit">ADD</button>
+        </form>
 	</body>
 	<script src="/vertify.js"></script>
-    <script src="editDepartment.js"></script>
-
+	<script src="addShift.js"></script>
 </html>

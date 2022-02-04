@@ -11,6 +11,7 @@ let displayDepData = async () =>
 {
 let ResponseDEP = await fetch('https://localhost:44367/api/Department')
 let depData = await ResponseDEP.json()
+let empData = await fetch('https://localhost:44367/api/Employee/')
 
 
 let count = 0
@@ -50,17 +51,14 @@ depData.forEach( dep => {
 
     let deleteButton = document.createElement('input')
 
-
-
     deleteButton.setAttribute('type', 'button')
     editButton.setAttribute('type', 'button')
-   
-        
+
     editButton.setAttribute('value', 'EDIT') 
  
     deleteButton.setAttribute('value', 'DELETE') 
-
-    editButton.addEventListener("click", e => {window.location.replace(``)})
+    console.log(dep.DepartmentID)
+    editButton.addEventListener("click", e => {window.location.replace(`http://127.0.0.1:5500/DepartmentMenu/edit_Department.html?depid=${dep.ID}`)})
 
     deleteButton.addEventListener("click", e =>  {
        

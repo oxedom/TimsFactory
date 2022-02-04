@@ -2,7 +2,6 @@ const form = document.getElementById('form')
 const nameInput = document.getElementById('name')
 const mangerDropbox = document.getElementById('manger')
 const depDropbox = document.getElementById('department')
-
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('depid');
 
