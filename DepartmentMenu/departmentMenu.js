@@ -61,10 +61,15 @@ depData.forEach( dep => {
     deleteButton.setAttribute('value', 'DELETE') 
 
     editButton.addEventListener("click", e => {window.location.replace(``)})
+
     deleteButton.addEventListener("click", e =>  {
-        console.log(depData)
-    fetch(`https://localhost:44367/api/Department/`,{ method: 'delete'}
-    )})
+       
+    fetch(`https://localhost:44367/api/Department/${dep.ID}`,{ method: 'delete'}
+  
+)
+    alert("deleted")
+    window.location.replace(`http://127.0.0.1:5500/DepartmentMenu/departmentMenu.html`)
+})
 
 
     buttonData.appendChild(deleteButton)
