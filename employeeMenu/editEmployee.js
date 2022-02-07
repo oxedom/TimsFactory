@@ -5,36 +5,90 @@ let lname = document.getElementById("lname")
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('empid');
 let select = document.getElementById("StartOfWorkingYear");
-
 let form = document.getElementById("form")
+
+// let numOfActionsNav = document.getElementById("numOfActionsnav")
+
+
+let checkNumOfActions = async () => 
+{
+let answer = false;
+let userID = localStorage.getItem('id')  
+let Response = await fetch(`https://localhost:44367/api/Action/${userID}`)
+let numOfActionData = await Response.json()
+if(!numOfActionData > 0) 
+{
+    alert("Your amount of Actions is 0, you can not pefome any actions")
+}
+else
+{
+answer = true
+// /5
+let numberOfActionsObj =  {numOfActions: numOfActionData-1}   
+
+        const putMethod = {
+            method: 'PUT', // Method itself
+            headers: {
+             'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+            },
+            body: JSON.stringify(numberOfActionsObj) // We send data in JSON format
+           }
+    
+    window.localStorage.setItem('numOfActions', numOfActionData-1)
+    numOfActionsNav.innerText = numOfActionData-1
+    console.log(putMethod)
+    fetch(`https://localhost:44367/api/Action/${userID}`, putMethod)
+
+}
+return answer
+}
+
+
+
+
+let putEmpData = () => 
+{
+    let empObj = 
+    {
+    fname: fname.value,
+    lname: lname.value,
+    startYear: `${selectYear.value}-01-01`,
+    DepartmentID: selectDeps.value
+    }   
+    
+        const putMethod = {
+            method: 'PUT', // Method itself
+            headers: {
+             'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+            },
+            body: JSON.stringify(empObj) // We send data in JSON format
+           }
+    
+           console.log(putMethod)
+    fetch(`https://localhost:44367/api/Employee/${myParam}`, putMethod)
+}
+
+
+
 //put  request
 form.addEventListener("submit", (e) => 
 {
 e.preventDefault()
-let empObj = 
+checkNumOfActions().then(answer => 
 {
-fname: fname.value,
-lname: lname.value,
-startYear: `${selectYear.value}-01-01`,
-DepartmentID: selectDeps.value
-}   
-
-console.log(empObj)
-    
-    
-    const putMethod = {
-        method: 'PUT', // Method itself
-        headers: {
-         'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
-        },
-        body: JSON.stringify(empObj) // We send data in JSON format
-       }
-
-       console.log(putMethod)
-fetch(`https://localhost:44367/api/Employee/${myParam}`, putMethod)
+if(answer) 
+{
+    putEmpData()
+}
+else 
+{
+    console.log("bulox")
+}
 
 
-e.preventDefault()
+})
+
+
 
 })
 
@@ -89,5 +143,7 @@ fetch(`https://localhost:44367/api/Employee/${myParam}`)
 
 
     })
+
+
 
 

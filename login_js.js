@@ -24,7 +24,7 @@ let answer = false
         if(user.ID == 0) { alert("Password/username is not correct")}
         else if (user.id != 0)  {           
            //SETS THE LOCALSTORAGE FOR USER/FULLNAME/NUM OF ACTIONS
-            window.localStorage.setItem("id", user.id)
+            window.localStorage.setItem("id", user.ID)
             window.localStorage.setItem('fullname', user.full_name)
             window.localStorage.setItem('user', user.username)
             window.localStorage.setItem('numOfActions', parseInt(user.numOfActions))
