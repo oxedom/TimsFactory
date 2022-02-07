@@ -67,7 +67,7 @@ empData.forEach( emp => {
 
 
     editButton.addEventListener("click", e => {window.location.replace(`http://127.0.0.1:5500/employeeMenu/edit_Employee.html?empid=${emp.ID}`)}) 
-    addButton.addEventListener("click", e => {window.location.replace(`www.google.com`)})        
+    addButton.addEventListener("click", e => {window.location.replace(`http://127.0.0.1:5500/shiftMenu/addShift.html`)})        
     deleteButton.addEventListener("click", e =>  {
          fetch(`https://localhost:44367/api/Employee/${emp.ID}`,{
         method: 'delete'})
@@ -123,21 +123,42 @@ setTimeout(() => {
 
 
 search.addEventListener('keyup', () => {
-
-let tds = document.querySelectorAll('td')
-const term = search.value.trim().toLowerCase();
-let trs = document.querySelectorAll('tr')
-            console.log(trs)
-trs.forEach(tr => { tr.classList.remove("hide")})
-
-tds.forEach(td => 
-        {   
-            if(td.innerText.toLowerCase().startsWith(term) && term.length > 0) 
-            {    
-               
-                td.parentElement.classList.add("hide")
+        // Declare variables
+        var search, filter, table, tr, td, i, txtValue;
+        search = document.getElementById("search");
+        filter = search.value.trim().toLowerCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+      
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[2];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
             }
-            })  
+          }
+        }
+     
+
+
+// let tds = document.querySelectorAll('td')
+// const term = search.value.trim().toLowerCase();
+// let trs = document.querySelectorAll('tr')
+//             console.log(trs)
+// trs.forEach(tr => { tr.classList.remove("hide")})
+
+// tds.forEach(td => 
+//         {   
+//             if(td.innerText.toLowerCase().startsWith(term) && term.length > 0) 
+//             {    
+               
+//                 td.parentElement.classList.add("hide")
+//             }
+//             })  
   });
 
 

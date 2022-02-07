@@ -4,24 +4,26 @@ const mangerDropbox = document.getElementById('manger')
 const depDropbox = document.getElementById('department')
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('depid');
-console.log(myParam)
 
 
-fetch('https://localhost:44367/api/Employee')
-.then(Response => Response.json())
-.then(data => {
-    let select = document.getElementById("deps");    
-for (let index = 0; index < data.length; index++) 
+let addEmps = () => 
 {
-    let option = document.createElement("option");
-option.text = data[index].fname +" "+ data[index].lname;
-option.value = data[index].ID;
-mangerDropbox.value = data.ID
-mangerDropbox.appendChild(option);
- 
+    fetch('https://localhost:44367/api/Employee')
+    .then(Response => Response.json())
+    .then(data => {
+        let select = document.getElementById("deps");    
+    for (let index = 0; index < data.length; index++) 
+    {
+        let option = document.createElement("option");
+    option.text = data[index].fname +" "+ data[index].lname;
+    option.value = data[index].ID;
+    mangerDropbox.value = data.ID
+    mangerDropbox.appendChild(option);
+    }
+    getDeps()
+    })
 }
-getDeps()
-})
+addEmps()
 
 let getDeps = () =>
  {
@@ -37,14 +39,36 @@ let getDeps = () =>
     option.value = data[index].ID;
     depDropbox.value = data.ID
     depDropbox.appendChild(option);
+    if(myParam == data[index].ID) { 
+        document.getElementById('manger').childNodes.forEach(op => 
+        {
+            if(op.value == data[index].mangerFK ) 
+            {
+                op.setAttribute('selected', 0)
+            }
+
+
+        })
+        
+        } 
+        
+    
+    }
+
+
    
 
 
-    }
-    
     document.getElementById('department').childNodes.forEach(op => {
         console.log(op)
-        if(op.value == myParam) { op.setAttribute('selected', 0)}
+        if(op.value == myParam) 
+        { op.setAttribute('selected', 0)
+
+    
+    
+            }
+
+
     });
 
     })
