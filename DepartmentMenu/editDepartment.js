@@ -4,6 +4,32 @@ const mangerDropbox = document.getElementById('manger')
 const depDropbox = document.getElementById('department')
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('depid');
+let UpdateDeps = () => 
+{
+    let depObj = { name: nameInput.value, mangerFK: parseInt(mangerDropbox.value) }   
+    let depID = depDropbox.value
+    console.log(depObj)
+    console.log(depID)
+        
+        const putMethod = {
+            method: 'PUT', // Method itself
+            headers: {
+             'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+            },
+            body: JSON.stringify(depObj) // We send data in JSON format
+           }
+    
+    if(nameInput.value.length > 3) 
+    {
+        fetch(`https://localhost:44367/api/Department/${depID}`, putMethod)
+        setTimeout(() => {
+            location.reload();
+        }, 500);
+        alert("EDITED")
+    }
+    else { alert("NEW NAME NEEDS TO BE AT LEAST 3 CHARS LONG")}
+
+}
 
 
 let addEmps = () => 
@@ -80,29 +106,20 @@ let getDeps = () =>
 form.addEventListener("submit", (e) => 
 {
 e.preventDefault()
-let depObj = { name: nameInput.value, mangerFK: parseInt(mangerDropbox.value) }   
-let depID = depDropbox.value
-console.log(depObj)
-console.log(depID)
-    
-    const putMethod = {
-        method: 'PUT', // Method itself
-        headers: {
-         'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
-        },
-        body: JSON.stringify(depObj) // We send data in JSON format
-       }
+checkNumOfActions()
+.then(answer => {
+    if(answer) 
+    {
+        UpdateDeps()
+    }
+    else 
+    {
+        console.log("bulox")
+    }
 
-if(nameInput.value.length > 3) 
-{
-    fetch(`https://localhost:44367/api/Department/${depID}`, putMethod)
-    setTimeout(() => {
-        location.reload();
-    }, 500);
-    alert("EDITED")
 }
-else { alert("NEW NAME NEEDS TO BE AT LEAST 3 CHARS LONG")}
 
+)
 
 
 })

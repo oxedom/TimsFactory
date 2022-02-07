@@ -5,6 +5,43 @@ let numOfActionsNav = document.getElementById("numOfActionsnav")
 // window.localStorage.setItem('fullname', "offline")
 // window.localStorage.setItem('user', "offline")
 // window.localStorage.setItem('numOfActions', 1)
+let checkNumOfActions = async () => 
+{
+let answer = false;
+let userID = localStorage.getItem('id')  
+let Response = await fetch(`https://localhost:44367/api/Action/${userID}`)
+let numOfActionData = await Response.json()
+if(!numOfActionData > 0) 
+{
+    alert("Your amount of Actions is 0, you can not pefome any actions")
+}
+else
+{
+answer = true
+// /5
+let numberOfActionsObj =  {numOfActions: numOfActionData-1}   
+
+        const putMethod = {
+            method: 'PUT', // Method itself
+            headers: {
+             'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+            },
+            body: JSON.stringify(numberOfActionsObj) // We send data in JSON format
+           }
+    
+    window.localStorage.setItem('numOfActions', numOfActionData-1)
+    numOfActionsNav.innerText = numOfActionData-1
+    console.log(putMethod)
+    fetch(`https://localhost:44367/api/Action/${userID}`, putMethod)
+
+}
+return answer
+}
+
+
+
+
+
 
 let isLoggedin = async () => 
 {

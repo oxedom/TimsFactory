@@ -34,11 +34,17 @@ console.log(depObj)
         body: JSON.stringify(depObj) // We send data in JSON format
        }
 
+       checkNumOfActions().then(answer => 
+        {
+            if(answer)
+            { 
+                fetch(`https://localhost:44367/api/Department/`, postMethod)
+                alert("ADDED")
+                location.reload();
 
-fetch(`https://localhost:44367/api/Department/`, postMethod)
-alert("ADDED")
+            }
+         })
 
-location.reload();
 
 })
 

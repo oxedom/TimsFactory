@@ -44,8 +44,12 @@ const postMethod = {
    }
 
 
+   checkNumOfActions().then(answer => { if (answer) 
+    {
+        fetch('https://localhost:44367/api/shift' ,postMethod)
+        alert("Added a shift!")
 
-fetch('https://localhost:44367/api/shift' ,postMethod)
-alert("Added a shift!")
+    }})
+
 
 })

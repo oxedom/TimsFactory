@@ -60,13 +60,19 @@ depData.forEach( dep => {
     console.log(dep.DepartmentID)
     editButton.addEventListener("click", e => {window.location.replace(`http://127.0.0.1:5500/DepartmentMenu/edit_Department.html?depid=${dep.ID}`)})
 
-    deleteButton.addEventListener("click", e =>  {
-       
-    fetch(`https://localhost:44367/api/Department/${dep.ID}`,{ method: 'delete'}
-  
-)
-    alert("deleted")
-    window.location.replace(`http://127.0.0.1:5500/DepartmentMenu/departmentMenu.html`)
+    deleteButton.addEventListener("click", e =>  
+    {
+        checkNumOfActions().then(answer => { if(answer) 
+            {
+                fetch(`https://localhost:44367/api/Department/${dep.ID}`,{ method: 'delete'})
+                alert("deleted")
+                window.location.replace(`http://127.0.0.1:5500/DepartmentMenu/departmentMenu.html`)
+            }
+
+        }
+            
+            )
+ 
 })
 
 
