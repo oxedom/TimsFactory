@@ -7,49 +7,49 @@ const form = document.getElementById('form')
 console.log(empDropbox)
 
 fetch('https://localhost:44367/api/Employee')
-.then(Response => Response.json())
-.then(data => {
-     
-for (let index = 0; index < data.length; index++) 
-{
-    console.log(data[index])
-    
-let option = document.createElement("option");
-option.text = data[index].fname +" "+ data[index].lname;
-option.value = data[index].ID;
-empDropbox.appendChild(option)
-}})
+    .then(Response => Response.json())
+    .then(data => {
+
+        for (let index = 0; index < data.length; index++) {
+            console.log(data[index])
+
+            let option = document.createElement("option");
+            option.text = data[index].fname + " " + data[index].lname;
+            option.value = data[index].ID;
+            empDropbox.appendChild(option)
+        }
+    })
 
 
 
-form.addEventListener('submit', e => { 
-e.preventDefault()
+form.addEventListener('submit', e => {
+    e.preventDefault()
 
 
 
-let shiftObj = 
-{
+    let shiftObj = {
         "employeeID": empDropbox.value,
         "dateOfShift": `${date.value}T00:00:00`,
         "startTime": start.value,
         "endTime": end.value
-}
+    }
 
-const postMethod = {
-    method: 'POST', // Method itself
-    headers: {
-     'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
-    },
-    body: JSON.stringify(shiftObj) // We send data in JSON format
-   }
+    const postMethod = {
+        method: 'POST', // Method itself
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+        },
+        body: JSON.stringify(shiftObj) // We send data in JSON format
+    }
 
 
-   checkNumOfActions().then(answer => { if (answer) 
-    {
-        fetch('https://localhost:44367/api/shift' ,postMethod)
-        alert("Added a shift!")
+    checkNumOfActions().then(answer => {
+        if (answer) {
+            fetch('https://localhost:44367/api/shift', postMethod)
+            alert("Added a shift!")
 
-    }})
+        }
+    })
 
 
 })
