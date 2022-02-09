@@ -31,14 +31,38 @@ let login = async (loginObj) => {
     } else if (user.id != 0) {
         //SETS THE LOCALSTORAGE FOR USER/FULLNAME/NUM OF ACTIONS
         let today = new Date()
-        if (window.localStorage.getItem('date') != today.getDay()) {
-            console.log("penis")
-        } {}
         window.localStorage.setItem("id", user.ID)
         window.localStorage.setItem('fullname', user.full_name)
         window.localStorage.setItem('user', user.username)
         window.localStorage.setItem('numOfActions', parseInt(user.numOfActions))
-        window.localStorage.setItem('date', today.getDay())
+
+        if(window.localStorage.getItem(`lastLogin${loginObj.username}`) == null) 
+        {
+            window.localStorage.setItem(`lastLogin${loginObj.username}`, today.getTime())
+        }
+        else 
+        {
+            let lastLoginPlus24hours = parseInt(window.localStorage.getItem(`lastLogin${loginObj.username}`))+86400 
+        
+            if (today.getTime() > lastLoginPlus24hours) 
+            {
+                let numberOfActionsObj = { numOfActions: 10}
+        
+                const putMethod = {
+                    method: 'PUT', // Method itself
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+                    },
+                    body: JSON.stringify(numberOfActionsObj) // We send data in JSON format
+                }
+        
+                window.localStorage.setItem('numOfActions', 10)
+                fetch(`https://localhost:44367/api/Action/${user.ID}`, putMethod)
+                .then(res => console.log("YASS"))
+                window.localStorage.setItem(`lastLogin${loginObj.username}`, today.getTime())
+            }
+
+        }
         //REDIRECTS TO HOMEPAGE
         // location.href = 'http://127.0.0.1:5500/homepage/homepage.html'
         answer = true
