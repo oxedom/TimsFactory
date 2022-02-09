@@ -46,7 +46,7 @@ let displayShiftData = async () => {
 
         shiftDep.innerText = dep.name
 
-        empName.innerHTML = `<a href="http://127.0.0.1:5500/employeeMenu/edit_Employee.html?empid=${emp.ID}"> ${emp.fname} ${emp.lname} </a>`
+        empName.innerHTML = `<a href="../employeeMenu//edit_Employee.html?empid=${emp.ID}"> ${emp.fname} ${emp.lname} </a>`
 
         dateOfShift.innerText = normalDate.getDate() + "/" + parseInt(normalDate.getMonth() + 1) + "/" + normalDate.getFullYear()
         timeStart.innerText = shift.startTime

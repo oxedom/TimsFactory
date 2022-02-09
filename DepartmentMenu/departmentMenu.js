@@ -57,7 +57,7 @@ let displayDepData = async () => {
         deleteButton.setAttribute('value', 'DELETE')
         console.log(dep.DepartmentID)
         editButton.addEventListener("click", e => {
-            window.location.replace(`http://127.0.0.1:5500/DepartmentMenu/edit_Department.html?depid=${dep.ID}`)
+            window.location.replace(`../DepartmentMenu/edit_Department.html?depid=${dep.ID}`)
         })
 
         deleteButton.addEventListener("click", e => {
@@ -67,7 +67,7 @@ let displayDepData = async () => {
                             method: 'delete'
                         })
                         alert("deleted")
-                        window.location.replace(`http://127.0.0.1:5500/DepartmentMenu/departmentMenu.html`)
+                        window.location.replace(`../DepartmentMenu/departmentMenu.html`)
                     }
 
                 }

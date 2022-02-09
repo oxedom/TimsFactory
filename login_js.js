@@ -36,16 +36,21 @@ let login = async (loginObj) => {
         window.localStorage.setItem('user', user.username)
         window.localStorage.setItem('numOfActions', parseInt(user.numOfActions))
 
-        if(window.localStorage.getItem(`lastLogin${loginObj.username}`) == null) 
+        if(parseInt(window.localStorage.getItem(`lastLogin${user.username}`)) == null) 
         {
+            console.log("NO USER LIKE THIS ON SYSTEM LETS ADD HIM")
             window.localStorage.setItem(`lastLogin${loginObj.username}`, today.getTime())
         }
         else 
         {
-            let lastLoginPlus24hours = parseInt(window.localStorage.getItem(`lastLogin${loginObj.username}`))+86400 
-        
+
+            let lastLoginPlus24hours = parseInt(window.localStorage.getItem(`lastLogin${loginObj.username}`)+86400)
+            console.log()
             if (today.getTime() > lastLoginPlus24hours) 
             {
+                console.log(`Last login is: ${window.localStorage.getItem(`lastLogin${loginObj.username}`)}`)
+                console.log(`Last login plis 24 hours is + ${lastLoginPlus24hours}`)
+                console.log(`Today is ${today.getTime()}`)
                 let numberOfActionsObj = { numOfActions: 10}
         
                 const putMethod = {

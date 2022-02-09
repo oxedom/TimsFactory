@@ -34,7 +34,7 @@ let displayEmployeeData = async () => {
 
         //Adds the Fullname to a link with a href to the ID for the edit Employeepage 
         let NameData = document.createElement('td')
-        NameData.innerHTML = `<a href="http://127.0.0.1:5500/employeeMenu/edit_Employee.html?empid=${emp.ID}"> ${emp.fname} ${emp.lname} </a>`
+        NameData.innerHTML = `<a href="../employeeMenu/edit_Employee.html?empid=${emp.ID}"> ${emp.fname} ${emp.lname} </a>`
 
         //Adds Start Of Working Year (Converted with DateOBJ)
         let StartOfWorkingData = document.createElement('td')
@@ -74,10 +74,10 @@ let displayEmployeeData = async () => {
 
 
                 editButton.addEventListener("click", e => {
-                    window.location.replace(`http://127.0.0.1:5500/employeeMenu/edit_Employee.html?empid=${emp.ID}`)
+                    window.location.replace(`../employeeMenu/edit_Employee.html?empid=${emp.ID}`)
                 })
                 addButton.addEventListener("click", e => {
-                    window.location.replace(`http://127.0.0.1:5500/shiftMenu/addShift.html`)
+                    window.location.replace(`../shiftMenu/addShift.html`)
                 })
                 deleteButton.addEventListener("click", e => {
                     fetch(`https://localhost:44367/api/Employee/${emp.ID}`, {
