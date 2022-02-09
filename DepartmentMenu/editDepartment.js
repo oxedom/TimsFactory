@@ -105,7 +105,7 @@ form.addEventListener("submit", (e) => {
                 if (answer) {
                     UpdateDeps()
                 } else {
-                    console.log("bulox")
+                    console.log("///")
                 }
 
             }
